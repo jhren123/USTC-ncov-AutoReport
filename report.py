@@ -47,7 +47,10 @@ class Report(object):
                 'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.39'}
             uploader=login.session.get('https://weixine.ustc.edu.cn/2020/upload/xcm')
             cookie=login.session.cookies.get_dict()
-            driver = webdriver.Chrome()
+            option = webdriver.ChromeOptions()
+            option.add_argument('headless')# 添加无头模式
+            option.add_experimental_option('excludeSwitches', ['enable-logging'])
+            driver = webdriver.Chrome(options=option)
             driver.get('https://weixine.ustc.edu.cn/2020/upload/xcm')
             for (name,value) in cookie.items():
                 driver.add_cookie({'name':name,'value':value})
