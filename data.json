@@ -1,0 +1,19 @@
+{
+    "juzhudi":"中校区",
+    "dorm_building":"4",
+    "dorm":"302",
+    "body_condition": "1",
+    "body_condition_detail": "",
+    "now_status": "1",
+    "now_status_detail": "",
+    "has_fever": "0",
+    "last_touch_sars": "0",
+    "last_touch_sars_date": "",
+    "last_touch_sars_detail": "",
+    "is_danger":"0",
+    "is_goto_danger":"0",
+    "jinji_lxr": "Yichang Xu",
+    "jinji_guanxi": "self",
+    "jiji_mobile": "13233131808",
+    "other_detail": ""
+}
