@@ -45,28 +45,31 @@
 2. 根据自己的实际情况修改`data.json`的数据，参看下文。默认的`data.json`是中校区在校状态。**开发者不保证这些模板的正确性。**
 
 3. 将修改好的代码push至master分支。如果不需要修改 `data.json`，请在 `README.md` 里添加一个空格并push，否则不会触发之后的步骤。**请在自己的仓库中修改，不要pull request到本仓库！**
+4. 修改upload.jpg为自己的行程码。**这一步别忘了！**
 
-4. 点击Actions选项卡，点击`I understand my workflows, go ahead and enable them`.
+5. 点击Actions选项卡，点击`I understand my workflows, go ahead and enable them`.
 
-5. 点击Settings选项卡，点击左侧Secrets，点击New secret，创建名为`STUID`，值为自己学号的secret。用同样方法，创建名为`PASSWORD`，值为自己中国滑稽大学统一身份认证密码的secret。这两个值不会被公开。
+6. 点击Settings选项卡，点击左侧Secrets，点击New secret，创建名为`STUID`，值为自己学号的secret。用同样方法，创建名为`PASSWORD`，值为自己中国滑稽大学统一身份认证密码的secret。这两个值不会被公开。
 
    ![secrets](imgs/image-20200826215037042.png)
 
-6. 默认的打卡时间是每天的上午6:50，可能会有（延后）几分钟的浮动。如需选择其它时间，可以修改`.github/workflows/report.yml`中的`cron`，详细说明参见[安排的事件](https://docs.github.com/cn/actions/reference/events-that-trigger-workflows#scheduled-events)，请注意这里使用的是**国际标准时间UTC**，北京时间的数值比它大8个小时。建议修改默认时间，避开打卡高峰期以提高成功率。
+7. 默认的打卡时间是每天的上午6:50，可能会有（延后）几分钟的浮动。如需选择其它时间，可以修改`.github/workflows/report.yml`中的`cron`，详细说明参见[安排的事件](https://docs.github.com/cn/actions/reference/events-that-trigger-workflows#scheduled-events)，请注意这里使用的是**国际标准时间UTC**，北京时间的数值比它大8个小时。建议修改默认时间，避开打卡高峰期以提高成功率。
 
-7. 在Actions选项卡可以确认打卡情况。如果打卡失败（可能是临时网络问题等原因），脚本会自动重试，五次尝试后如果依然失败，将返回非零值提示构建失败。
+8. 在Actions选项卡可以确认打卡情况。如果打卡失败（可能是临时网络问题等原因），脚本会自动重试，五次尝试后如果依然失败，将返回非零值提示构建失败。
 
-8. 在Github个人设置页面的Notifications下可以设置Github Actions的通知，建议打开Email通知，并勾选"Send notifications for failed workflows only"。请及时查看邮件，如果失败会进行通知。
+9. 在Github个人设置页面的Notifications下可以设置Github Actions的通知，建议打开Email通知，并勾选"Send notifications for failed workflows only"。请及时查看邮件，如果失败会进行通知。
 
 ## 在本地运行测试
 
-要在本地运行测试，需要安装python 3。我们假设您已经安装了python 3和pip 3，并已将其路径添加到环境变量。
+要在本地运行测试，需要安装python 3。我们假设您已经安装了python 3和pip 3，并已将其路径添加到环境变量。  
+本地测试时，需要先修改report.py中upload.jpg的地址为该文件的绝对地址。
 
 ### 安装依赖
 
 ```shell
 pip install -r requirements.txt
 ```
+安装chrome和对应版本的chromedriver，如果是Linux可以直接参照workflow里的yml输对应指令。
 
 ### 运行打卡程序
 
