@@ -1,5 +1,4 @@
 # 中国滑稽大学(University of Ridiculous of China)健康打卡平台自动打卡脚本
-# 现在每日上传健康码才能报备，目前还没有实现这个功能，但基本的自动打卡是可以的。（自动上传两码稍后实现）
 
 ![Auto-report action](https://github.com/Kobe972/USTC-ncov-AutoReport/workflows/Auto-report%20action/badge.svg?branch=master)
 ![School](https://img.shields.io/badge/School-URC-blue.svg)
@@ -34,6 +33,7 @@
 - 20220330：打卡页面添加宿舍信息，报备URL做了略微的修改。**记得使用前修改data.json的宿舍！**
 - 20220405：报备页面增加报备理由
 - 20220408：上次修改脚本时把daliy改成了daily（妮可经典URL拼错），用burpsuite查出问题并做了修改。同时简化了部分代码。
+- 20220526：自动上传健康码，并修改了一些API
 
 ## 使用方法
 
