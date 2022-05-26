@@ -4,6 +4,7 @@ import argparse
 from bs4 import BeautifulSoup
 import json
 import pytz
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from ustclogin import Login
@@ -96,6 +97,7 @@ if __name__ == "__main__":
     parser.add_argument('stuid', help='your student number', type=str)
     parser.add_argument('password', help='your CAS password', type=str)
     args = parser.parse_args()
+    print(os.getcwd())
     autorepoter = Report(stuid=args.stuid, password=args.password, data_path=args.data_path)
     count = 5
     while count != 0:
