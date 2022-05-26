@@ -4,7 +4,6 @@ import argparse
 from bs4 import BeautifulSoup
 import json
 import pytz
-import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from ustclogin import Login
@@ -56,7 +55,7 @@ class Report(object):
             for (name,value) in cookie.items():
                 driver.add_cookie({'name':name,'value':value})
             driver.get('https://weixine.ustc.edu.cn/2020/upload/xcm')
-            driver.find_element(by=By.NAME, value='file').send_keys('upload.jpg')
+            driver.find_element(by=By.NAME, value='file').send_keys('/home/runner/work/USTC-ncov-AutoReport/USTC-ncov-AutoReport/upload.jpg')
             time.sleep(5)
             driver.quit()
             data=login.session.get('https://weixine.ustc.edu.cn/2020/apply/daliy',headers=headers).text
@@ -97,7 +96,6 @@ if __name__ == "__main__":
     parser.add_argument('stuid', help='your student number', type=str)
     parser.add_argument('password', help='your CAS password', type=str)
     args = parser.parse_args()
-    print(os.getcwd())
     autorepoter = Report(stuid=args.stuid, password=args.password, data_path=args.data_path)
     count = 5
     while count != 0:
