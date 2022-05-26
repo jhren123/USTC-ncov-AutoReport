@@ -3,17 +3,8 @@ import re
 import argparse
 from bs4 import BeautifulSoup
 import json
-import pytz
-from selenium import webdriver
-from selenium.webdriver.common.by import By
+import re
 from ustclogin import Login
-from datetime import datetime
-from datetime import timedelta
-from datetime import timezone
-SHA_TZ = timezone( #北京时间
-    timedelta(hours=8),
-    name='Asia/Shanghai',
-)
 class Report(object):
     def __init__(self, stuid, password, data_path):
         self.stuid = stuid
@@ -45,20 +36,22 @@ class Report(object):
                 flag=True
             headers={
                 'user-agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36 Edg/99.0.1150.39'}
-            uploader=login.session.get('https://weixine.ustc.edu.cn/2020/upload/xcm')
-            cookie=login.session.cookies.get_dict()
-            option = webdriver.ChromeOptions()
-            option.add_argument('headless')# 添加无头模式
-            option.add_experimental_option('excludeSwitches', ['enable-logging'])
-            driver = webdriver.Chrome(options=option)
-            driver.get('https://weixine.ustc.edu.cn/2020/upload/xcm')
-            for (name,value) in cookie.items():
-                driver.add_cookie({'name':name,'value':value})
-            driver.get('https://weixine.ustc.edu.cn/2020/upload/xcm')
-            driver.find_element(by=By.NAME, value='file').send_keys('/home/runner/work/USTC-ncov-AutoReport/USTC-ncov-AutoReport/upload.jpg')
-            time.sleep(5)
-            driver.quit()
-            data=login.session.get('https://weixine.ustc.edu.cn/2020/apply/daliy',headers=headers).text
+            url = "https://weixine.ustc.edu.cn/2020/upload/xcm" #上传两码
+            data=login.session.get(url,headers=headers).text
+            data = data.encode('ascii','ignore').decode('utf-8','ignore')
+            data=re.search(r"formData:{([\s\S]*?)}",data,re.M)
+            data='{'+data.group(1)+'}'
+            data=data.replace("_token","'token'")
+            data=data.replace("'",'"')
+            data=json.loads(data)
+            data['t']='1' #1是上传行程码，2是上传健康码，3是上传核酸检测报告
+            data['id']='WU_FILE_0'
+            file={'file':open('trace.jpg','rb')}
+            login.session.post('https://weixine.ustc.edu.cn/2020img/api/upload_for_student',headers=headers,data=data,files=file)
+            data['t']='2'
+            file={'file':open('safe.jpg','rb')}
+            login.session.post('https://weixine.ustc.edu.cn/2020img/api/upload_for_student',headers=headers,data=data,files=file)
+            data=login.session.get('https://weixine.ustc.edu.cn/2020/apply/daliy',headers=headers).text #报备
             data = data.encode('ascii','ignore').decode('utf-8','ignore')
             soup = BeautifulSoup(data, 'html.parser')
             token = soup.find("input", {"name": "_token"})['value']

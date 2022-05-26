@@ -16,9 +16,8 @@
 * **记得使用前修改data.json的宿舍！**
 * **记得使用前修改data.json的宿舍！**
 * **记得使用前修改data.json的宿舍！**
-* **记得上传自己的健康码！**
+* **记得上传自己的两码！**
 * **最好修改一下跨校区理由，不要直接照搬表单！**
-* **只能将报备时间设为早上5点以后，即打卡平台自动获取健康码以后。**
 
 ## 更新记录
 
@@ -46,7 +45,7 @@
 2. 根据自己的实际情况修改`data.json`的数据，参看下文。默认的`data.json`是中校区在校状态。**开发者不保证这些模板的正确性。**
 
 3. 将修改好的代码push至master分支。如果不需要修改 `data.json`，请在 `README.md` 里添加一个空格并push，否则不会触发之后的步骤。**请在自己的仓库中修改，不要pull request到本仓库！**
-4. 修改upload.jpg为自己的行程码。**这一步别忘了！**
+4. 修改trace.jpg为自己的行程码，safe.jpg修改为健康码。**这一步别忘了！**
 
 5. 点击Actions选项卡，点击`I understand my workflows, go ahead and enable them`.
 
@@ -70,7 +69,6 @@
 ```shell
 pip install -r requirements.txt
 ```
-安装chrome和对应版本的chromedriver，如果是Linux可以直接参照workflow里的yml输对应指令。
 
 ### 运行打卡程序
 
