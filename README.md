@@ -1,4 +1,5 @@
 # 中国滑稽大学(University of Ridiculous of China)健康打卡平台自动打卡脚本
+# Auto report action标签显示failing不表示脚本无效，只是我上周没有上传核酸报告
 
 ![Auto-report action](https://github.com/Kobe972/USTC-ncov-AutoReport/workflows/Auto-report%20action/badge.svg?branch=main)
 ![School](https://img.shields.io/badge/School-URC-blue.svg)
