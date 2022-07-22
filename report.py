@@ -49,7 +49,7 @@ class Report(object):
             data['id']='WU_FILE_0'
             file={'file':open('trace.jpg','rb')}
             login.session.post('https://weixine.ustc.edu.cn/2020img/api/upload_for_student',headers=headers,data=data,files=file)
-            data['t']='2'
+            data['t']='3'
             file={'file':open('safe.jpg','rb')}
             login.session.post('https://weixine.ustc.edu.cn/2020img/api/upload_for_student',headers=headers,data=data,files=file)
             data=login.session.get('https://weixine.ustc.edu.cn/2020/apply/daliy',headers=headers).text #报备
